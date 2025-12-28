@@ -22,10 +22,10 @@
             </div>
         </nav> 
         
-        <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; transform: translateY(-15%);">
-          <div class="text-center">
+        <div class="text-center" style="position: fixed; top: 90px; left: 50%; transform: translateX(-50%); z-index: 10;">
+          <div class="d-inline-flex flex-column align-items-start">
 
-            <h2 class="mb-3">Upload a File</h2>
+            <h2 class="mb-3 text-left w-100">Upload a File</h2>
 
             <form action="/upload" method="post" enctype="multipart/form-data"
                   class="d-inline-flex flex-column align-items-start">
@@ -41,6 +41,19 @@
           </div>
         </div>
 
-
+        <div class="text-center" style="padding-top: 260px;">
+            <h2>Download Files</h2>
+              <ul class="list-unstyled">
+                  {% for file in files %}
+                      <li>
+                          <a href="{{ url_for('download_file', filename=file) }}">{{ file }}</a>
+                          <form action="{{ url_for('download_file', filename=file) }}" method="post">
+                              <button type="submit">Download</button>
+                          </form>
+                      </li>
+                  {% endfor %}
+              </ul>
+        </div>
+        
     </body>
 </html>
