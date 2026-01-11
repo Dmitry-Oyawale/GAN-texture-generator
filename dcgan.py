@@ -231,3 +231,7 @@ for epoch in range(num_epochs):
     with torch.no_grad():
         fake = netG(fixed_noise[:25]).detach().cpu()
     vutils.save_image(fake, 'generated/fake_samples_epoch_%03d.png' % (epoch), normalize=True, nrow=5)
+
+os.makedirs("DCGAN2/pretrained", exist_ok=True)
+torch.save(netG.state_dict(), "DCGAN2/pretrained/netG.pt")
+print("Saved: DCGAN2/pretrained/netG.pt")
